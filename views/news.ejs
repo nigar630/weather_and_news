@@ -1,0 +1,171 @@
+
+
+<%- include('partials/head.ejs'); -%>
+
+  <div class="container">
+
+    <% if (locals.content){ %>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <a class="navbar-brand  text-light  " href="#">N E W S </a>
+          <button class="navbar-toggler" type="button"
+           data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+           aria-controls="navbarSupportedContent" aria-expanded="false" 
+           aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  Category
+                </a>
+                <ul class="dropdown-menu">
+
+                
+                  <% const categories = [ "business" , "entertainment",  "general",  "health", "science", "sports", "technology"   ]; %>
+      
+                  <% for (const category of categories){ %>
+          
+                <form  method="post" action="/news-by-category"   >
+                  <input type="hidden" name="news_category"  value="<%= category  %>"  >
+                  <button type="submit" class="text-dark dropdown-item "  >
+                  
+                    <%= category  %>
+                  
+                 </button>
+                          
+                </form>
+              
+                
+                 <% } %>
+
+
+                </ul>
+              </li>
+
+              
+              <li class="nav-item dropdown " >
+                <a class="nav-link dropdown-toggle text-light" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  Country
+                </a>
+                <ul class="dropdown-menu">
+                  <% const countries = ["ae", "ar", "at", "au" , "be",  "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in" ,"it", "jp", "kr", "lt", "lv", "ma", "mx", "my", "ng","nl", "no", "nz", "ph", "pl" , "pt" , "ro" , "rs" ,"ru" , "sa" ,"se" ,"sg" ,"si" ,"sk" ,"th" ,"tr" ,"tw" ,"ua" ,"us", "ve" ,"za" ]; %>
+                  <% for (const country of countries  ){ %>
+          
+                <form  action="/news-by-country" method="post">
+                  <input type="hidden" name="news_country" value="<%= country  %>"  >
+                 <button type="submit" class="text-dark dropdown-item"  >
+                     <%= country %>  
+                 </button>
+                
+       
+                </form>    
+          
+                  <% } %> 
+
+                  </ul>
+              </li>
+              
+              <li class="nav-item dropdown " >
+                <a class="nav-link dropdown-toggle text-light" href="#" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  Language
+                </a>
+                <ul class="dropdown-menu">
+                  <% const languages = ["ar", "de", "en", "es" , "fr",  "he",  "it", "nl", "no", "pt", "ru", "sv", "ud", "zh"]; %>
+                  <% for (const language of languages ){  %>
+                    <form  method="post" action="/news-by-language"   >
+                      <input type="hidden" name="news_language" value="<%= language  %>"  >
+                      <button type="submit" class="text-dark dropdown-item"  >  
+                         <%= language %>  
+                      </button>
+                  
+                    </form>
+                  <% } %>
+
+                  </ul>
+              </li>
+
+
+
+            </ul>
+         
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+          <div class="search-news">
+            <form action="/news-by-query" method="post">
+              <input type="text" name="query" id=""  class="form-control  mr-sm-6   form-control-lg"  placeholder="Enter your query">
+              <input type="submit" value="Search" class="btn btn-success my-6 my-sm-2   " >
+            </form>
+
+
+          </div>
+
+
+
+
+      <div class="news-section">
+        <h4 class="news-header"> Total <%= content.length %> news</h4>
+                 
+            <div class="row row-cols-auto">
+
+       <% for (let i=0 ; i < content.length ; i++  ) { %>
+           <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body">
+                  <div class="overlow-hidden">
+                  <img src="<%= content[i]["urlToImage"]  %>" class="card-img-top img-responsive" alt="image_of_news">
+                </div>     
+                  
+                  <h5 class="card-title" > <%= content[i]["title"] %></h5>
+      
+
+                  <p class="card-text">
+                  <small class="text-body-secondary" style="font-size: large; font-weight: bold;"     >
+                  <!-- Extract data from PubleshedAt and convert to readable format -->
+                    <%= content[i]["publishedAt"].slice(0,10).split("-").reverse().join("/")  %>                    
+                 At
+                  <!-- Extract time from PubleshedAt and convert to readable format -->
+                  <%= content[i]["publishedAt"].slice(11,-4)  %>            
+                 
+                  </small></p>
+
+                  <button type="button " class="btn btn-info">
+                    <a href="<%= content[i]["url"]  %>" >Go to news</a>
+                  </button>
+  
+              
+              </div>
+              </div>
+
+
+ 
+    <%  }  %> 
+
+
+    
+  </div>
+  </div>
+
+</div>
+
+
+<%- include("partials/footer.ejs");   %>
+
+
+
+    <% }  else{ %>
+     <h2>Error in News page...</h2>
+   <% } %>
+
+

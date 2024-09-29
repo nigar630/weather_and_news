@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+body {
+    /* height: 100vh; */
+    width: 100%;
+    background: url("https://images.unsplash.com/photo-1726853522009-8dc4c4e306a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") rgba(0, 0, 0, 0.3);
+    /* background-image: url("../styles/backs/earth.jpeg"); */
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+}
+
+
+
+input {
+    margin-top: 20px;
+}
+
+.col-img {
+    width: 100px;
+    height: 100px;
+}
+
+h1,
+h2 {
+
+    color: white;
+    font-family: "Titan One", cursive;
+    margin-bottom: 10px;
+}
+
+.title {
+    color: aliceblue;
+    font-weight: bold;
+}
+
+a {
+    color: #212534;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.news-header {
+    color: aliceblue;
+}
+
+.card {
+    /* background: url("../images/whisper-imgjpg"); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: var(--card-width);
+    height: var(--card-height);
+    margin: 20px;
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 1em;
+    /* color: rgb(88 199 250 / 0%); */
+    /* font-family: "Gloria Hallelujah", cursive; */
+}
+
+
+.dropdown-menu {
+    height: 34vh;
+    overflow-y: auto;
+}
+
+footer {
+    /* background-color: #111; */
+
+    width: 100%;
+
+}
+
+
+.footer-container {
+    width: 100%;
+    padding: 70px 30px 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.social-icons a i {
+    font-size: 1.4em;
+    color: black;
+    opacity: 0.9;
+}
+
+/* Hover effect for social media icons */
+
+.social-icons a:hover {
+    background-color: #111;
+    transition: 0.5s;
+}
+
+.social-icons a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+@media(max-width:700px) {
+    footer {
+        flex-direction: column;
+    }
+}
